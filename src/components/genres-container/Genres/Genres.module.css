@@ -1,0 +1,13 @@
+.Genres {
+    width: 1200px;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding: 10px;
+
+    background-color: #00abe4;
+}

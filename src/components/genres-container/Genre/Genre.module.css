@@ -1,0 +1,24 @@
+.Genre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Genre > a {
+    padding: 4px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #ffffff;
+
+    border-bottom: 1px solid #00abe4;
+    transition: all 0.4s;
+}
+
+.Genre a:hover {
+    border-bottom: 1px solid #d8f0f2;
+    transition: all 0.4s;
+}
+
+.Genre > a[class='active'] {
+    border-bottom: 1px solid #d8f0f2;
+}

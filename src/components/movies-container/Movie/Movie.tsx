@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
+import {Rating} from "react-simple-star-rating";
 
 import css from './Movie.module.css';
-import {IMovie} from "../../interfaces";
+import {IMovie} from "../../../interfaces";
 import {Link} from "react-router-dom";
 
 interface IProps {
@@ -9,11 +10,12 @@ interface IProps {
 }
 
 const Movie: FC<IProps> = ({movie}) => {
-    const {title, poster_path} = movie;
+    const {id, title, poster_path, vote_average} = movie;
 
     return (
-        <Link to={`/movies/${title}`} className={css.Movie}>
+        <Link to={`/movies/${id}`} className={css.Movie}>
             <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt="film_poster"/>
+            <Rating initialValue={vote_average} readonly={true} size={18} iconsCount={10} allowFraction={true}/>
             <p>{title}</p>
         </Link>
     );

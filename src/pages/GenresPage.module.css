@@ -1,0 +1,8 @@
+.GenresPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 62px 0 50px;
+}

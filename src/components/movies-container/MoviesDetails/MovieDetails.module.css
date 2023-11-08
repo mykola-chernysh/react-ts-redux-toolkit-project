@@ -1,0 +1,107 @@
+.MovieDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 100px 0 50px;
+}
+
+.MovieDetails_container {
+    display: flex;
+    justify-content: center;
+
+    margin: 0 0 20px 0;
+}
+
+.MovieDetails_poster {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 10px;
+
+    padding: 10px;
+
+    background-color: #00abe4;
+}
+
+.MovieDetails_poster > img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+
+    border: 5px solid #d8f0f2;
+}
+
+.MovieDetails_poster > span {
+    width: 300px;
+
+    text-align: center;
+    border: 5px solid #d8f0f2;
+}
+
+.MovieDetails_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+    border: 10px solid #00abe4;
+}
+
+.MovieDetails_info > div {
+    width: 370px;
+
+    display: grid;
+    grid-template-columns: 120px 200px;
+
+    padding: 20px;
+
+    color: #ffffff;
+    font-size: 20px;
+    background-color: #00abe4;
+
+    border: 5px solid #d8f0f2;
+}
+
+.MovieDetails_info > div:first-child {
+    display: block;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.MovieDetails_info > div > span {
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.MovieDetails_descr {
+    width: 750px;
+}
+
+.MovieDetails_descr > p {
+    padding: 20px;
+
+    text-align: justify;
+    font-size: 24px;
+    line-height: 30px;
+    color: #ffffff;
+    background-color: #00abe4;
+}
+
+.MovieDetails_descr > h3 {
+    width: 300px;
+
+    font-size: 22px;
+
+    padding: 10px;
+
+    text-align: center;
+    color: white;
+    background-color: #00abe4;
+    border-radius: 20px 20px 0 0;
+}
