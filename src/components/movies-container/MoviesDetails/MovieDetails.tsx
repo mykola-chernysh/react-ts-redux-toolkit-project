@@ -43,8 +43,12 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                 </div>
             </div>
             <div className={css.MovieDetails_descr}>
-                {tagline && <h3>{tagline}</h3>}
-                <p>{overview}</p>
+                <div>
+                    {tagline && <h3>{tagline}</h3>}
+                </div>
+                <div>
+                    <p>{overview}</p>
+                </div>
             </div>
         </div>
     );

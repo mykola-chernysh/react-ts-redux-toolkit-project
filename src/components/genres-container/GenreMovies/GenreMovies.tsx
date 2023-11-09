@@ -10,7 +10,7 @@ import {Pagination} from "../../pagination-container";
 const GenreMovies = () => {
     const {state: id} = useLocation();
     const [moviesByGenre, setMoviesByGenre] = useState<IMovie[]>([]);
-    const [query, setQuery] = useSearchParams({with_genres: ''});
+    const [query, setQuery] = useSearchParams({page: '1', with_genres: ''});
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     useEffect(() => {

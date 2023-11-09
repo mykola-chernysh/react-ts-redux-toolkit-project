@@ -10,8 +10,6 @@
 .MovieDetails_container {
     display: flex;
     justify-content: center;
-
-    margin: 0 0 20px 0;
 }
 
 .MovieDetails_poster {
@@ -55,6 +53,7 @@
 
     display: grid;
     grid-template-columns: 120px 200px;
+    align-items: center;
 
     padding: 20px;
 
@@ -80,28 +79,46 @@
 }
 
 .MovieDetails_descr {
-    width: 750px;
+    width: 710px;
+
 }
 
-.MovieDetails_descr > p {
+.MovieDetails_descr > div {
+    width: 710px;
+    background-color: #00abe4;
+    padding: 10px;
+}
+
+.MovieDetails_descr > div:first-child {
+    padding-bottom: 0;
+}
+
+.MovieDetails_descr > div:last-child {
+    padding-top: 0;
+}
+
+
+.MovieDetails_descr > div > p {
     padding: 20px;
 
     text-align: justify;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 30px;
     color: #ffffff;
     background-color: #00abe4;
+    border: 5px solid #d8f0f2;
 }
 
-.MovieDetails_descr > h3 {
+.MovieDetails_descr > div > h3 {
     width: 300px;
 
-    font-size: 22px;
+    font-size: 20px;
 
     padding: 10px;
 
     text-align: center;
     color: white;
     background-color: #00abe4;
-    border-radius: 20px 20px 0 0;
+    border: 5px solid #d8f0f2;
+    border-bottom: 0;
 }

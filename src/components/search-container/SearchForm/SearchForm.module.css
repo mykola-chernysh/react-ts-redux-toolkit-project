@@ -1,0 +1,49 @@
+.SearchForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SearchForm_container {
+    max-width: 1200px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 50px 0 20px 0;
+}
+
+.SearchForm > form {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    padding: 10px;
+
+    background-color: #00abe4;
+}
+
+.SearchForm > form > input {
+    width: 100%;
+    min-height: 30px;
+    outline: none;
+
+    padding: 3px 10px;
+
+    font-size: 14px;
+    color: #00abe4;
+    background-color: #d8f0f2;
+
+}
+
+.SearchForm > form > button {
+    padding: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #00abe4;
+    background-color: #d8f0f2;
+}
