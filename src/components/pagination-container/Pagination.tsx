@@ -44,12 +44,12 @@ const Pagination: FC<IProps> = ({setCurrentPage, changePage, currentPage, prev, 
         }
 
         setCurrentPages(arrPages);
-
     }, [currentPage]);
 
     return (
         <div className={css.Pagination}>
             <button
+                id={'button'}
                 disabled={currentPage === 1}
                 onClick={() => {
                 prev();
@@ -59,6 +59,7 @@ const Pagination: FC<IProps> = ({setCurrentPage, changePage, currentPage, prev, 
             {
                 currentPages.map((page) => (
                     <button
+                        id={'button'}
                         disabled={page === '...' || page === ' ...' || page === '... '}
                         key={page}
                         onClick={() => {
@@ -66,6 +67,7 @@ const Pagination: FC<IProps> = ({setCurrentPage, changePage, currentPage, prev, 
                             changePage(page);
                         }}
                         className={`${currentPage === page ? css.active : ''}`}
+
                     >
                         {page}
                     </button>
@@ -73,6 +75,7 @@ const Pagination: FC<IProps> = ({setCurrentPage, changePage, currentPage, prev, 
             }
 
             <button
+                id={'button'}
                 disabled={currentPage === 500}
                 onClick={() => {
                 next();

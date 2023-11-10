@@ -28,7 +28,6 @@ const SearchForm = () => {
         }
     }, [query.get('page'), query.get('query')]);
 
-    console.log(query);
     const searchMovies = (value: { search: string }) => {
         setQuery((prev) => {
             prev.set('query', value.search);
@@ -62,7 +61,7 @@ const SearchForm = () => {
 
     return (
         <div className={css.SearchForm}>
-            <form onSubmit={handleSubmit(searchMovies)}>
+            <form onSubmit={handleSubmit(searchMovies)} id={'form'}>
                 <input placeholder={'Enter the name of the movie'} {...register('search')}/>
                 <button>Search</button>
             </form>

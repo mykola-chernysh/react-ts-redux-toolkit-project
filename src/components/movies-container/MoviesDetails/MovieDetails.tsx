@@ -27,13 +27,13 @@ const MovieDetails: FC<IProps> = ({movie}) => {
     const language = spoken_languages.map(value => value.iso_639_1).join(', ');
 
     return (
-        <div className={css.MovieDetails}>
-            <div className={css.MovieDetails_container}>
+        <div className={css.MovieDetails} >
+            <div className={css.MovieDetails_container} id={'movie_details'}>
                 <div className={css.MovieDetails_poster}>
                     <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt=""/>
                     <Rating initialValue={vote_average} readonly={true} size={25} iconsCount={10} allowFraction={true}/>
                 </div>
-                <div className={css.MovieDetails_info}>
+                <div className={css.MovieDetails_info} id={'movieDetails_info'}>
                     <div>{title}</div>
                     <div>Release date: <span>{release_date}</span></div>
                     <div>Age rating: <span>{adult ? 'nc-17' : 'pg'}</span></div>
@@ -42,7 +42,7 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                     <div>Language: <span>{language}</span></div>
                 </div>
             </div>
-            <div className={css.MovieDetails_descr}>
+            <div className={css.MovieDetails_descr} id={'movieDetails_descr'}>
                 <div>
                     {tagline && <h3>{tagline}</h3>}
                 </div>

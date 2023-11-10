@@ -5,9 +5,64 @@
     box-sizing: border-box;
 }
 
-body {
-    width: 100%;
-    min-height: 100%;
-
+.Light {
     background-color: #D8F0F2;
+}
+
+.Dark {
+    background-color: #131415;
+}
+
+.Dark #header {
+    background-color: #080808;
+}
+
+.Dark #movie {
+    background-color: #1f2123;
+}
+
+.Dark #button {
+    background-color: #1f2123;
+}
+
+.Dark #genre {
+    background-color: #1f2123;
+}
+
+.Dark #genre_movie {
+    background-color: #1f2123;
+}
+
+.Dark #search_movies {
+    background-color: #1f2123;
+}
+
+.Dark #form {
+    background-color: #080808;
+}
+
+.Dark #form > input {
+    background-color: #1f2123;
+    color: #ffffff;
+}
+
+.Dark #form > input::placeholder {
+    color: #ffffff;
+}
+
+.Dark #form > button {
+    background-color: #1f2123;
+    color: #ffffff;
+}
+
+.Dark #movie_details div {
+    background-color: #1f2123;
+}
+
+.Dark #movieDetails_info {
+    border: 10px solid #1f2123;
+}
+
+.Dark #movieDetails_descr > div {
+    background-color: #1f2123;
 }

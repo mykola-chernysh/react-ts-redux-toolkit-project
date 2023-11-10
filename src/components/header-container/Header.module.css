@@ -22,7 +22,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .Header_logo {
@@ -80,4 +79,24 @@
     font-size: 14px;
     text-transform: lowercase;
     color: #ffffff;
+}
+
+.Header_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.Switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
 }

@@ -13,7 +13,7 @@ const Genres = () => {
     }, []);
 
     return (
-        <div className={css.Genres}>
+        <div className={css.Genres} id={'genre'}>
             {genres && genres.map(genre => <Genre key={genre.id} genre={genre}/>)}
         </div>
     );
