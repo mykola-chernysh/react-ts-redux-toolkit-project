@@ -9,8 +9,11 @@ import {useTheme} from '../../hooks';
 const Header = () => {
     const {theme, setTheme} = useTheme();
     const changeTheme = () => {
-        setTheme((prev) => (prev === 'Light' ? 'Dark' : 'Light'))
+        setTheme((prev) => (prev === 'Light' ? 'Dark' : 'Light'));
+
     }
+
+    localStorage.setItem('theme', theme);
 
     return (
         <div className={css.Header} id={'header'}>

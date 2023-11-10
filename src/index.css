@@ -4,6 +4,9 @@
     border: 0;
     box-sizing: border-box;
 }
+html, body {
+    background-color: #D8F0F2;
+}
 
 .Light {
     background-color: #D8F0F2;

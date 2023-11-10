@@ -12,6 +12,8 @@
     color: #ffffff;
     background-color: #00abe4;
     border-radius: 10px;
+
+    cursor: pointer;
 }
 .Pagination > button.active {
     background-color: #fff;

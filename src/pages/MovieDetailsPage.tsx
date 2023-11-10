@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 
+import css from './MovieDetailsPage.module.css'
 import {MovieDetails} from "../components";
 import {moviesService} from "../services";
 import {IMovieDetails} from "../interfaces";
@@ -14,7 +15,7 @@ const MovieDetailsPage = () => {
     }, []);
 
     return (
-        <div>
+        <div className={css.MoviesDetailsPage}>
             {movie && <MovieDetails movie={movie}/>}
         </div>
     );

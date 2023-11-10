@@ -5,8 +5,8 @@ import {IContext} from "../interfaces";
 const ThemeContext = createContext<IContext>(null);
 
 const ThemeProvider = ({children}: any) => {
-    const [theme, setTheme] = useState('Light');
-    
+    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'Light');
+
     return (
         <ThemeContext.Provider value={{theme, setTheme}}>
             {children}
