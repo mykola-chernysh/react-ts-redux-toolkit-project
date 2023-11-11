@@ -19,29 +19,6 @@ const Movies = () => {
         })
     }, [query.get('page')]);
 
-    const changePage = (numPage: number) => {
-        setQuery((page) => {
-            page.set('page', `${numPage}`);
-
-            return page;
-        })
-    }
-
-    const prev = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') - 1}`);
-
-            return page;
-        })
-    }
-
-    const next = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') + 1}`);
-            return page;
-        })
-    }
-
     return (
         <div className={css.Movies}>
             <div className={css.Movies_container}>
@@ -49,7 +26,7 @@ const Movies = () => {
                     movies.map(movie => <Movie key={movie.id} movie={movie}/>)
                 }
             </div>
-            <Pagination setCurrentPage={setCurrentPage} changePage={changePage} prev={prev} next={next} currentPage={currentPage}/>
+            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery}/>
         </div>
     );
 };

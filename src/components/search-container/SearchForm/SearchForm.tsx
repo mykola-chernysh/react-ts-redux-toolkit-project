@@ -38,27 +38,6 @@ const SearchForm = () => {
         reset();
     }
 
-    const changePage = (numPage: number) => {
-        setQuery((page) => {
-            page.set('page', `${numPage}`);
-            return page;
-        })
-    }
-
-    const prev = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') - 1}`);
-            return page;
-        })
-    }
-
-    const next = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') + 1}`);
-            return page;
-        })
-    }
-
     return (
         <div className={css.SearchForm}>
             <form onSubmit={handleSubmit(searchMovies)} id={'form'}>
@@ -68,8 +47,7 @@ const SearchForm = () => {
             <div className={css.SearchForm_container}>
                 {movies && movies.map((movie) => <SearchMovies key={movie.id} movie={movie}/>)}
             </div>
-            {<Pagination setCurrentPage={setCurrentPage} changePage={changePage} prev={prev} next={next}
-                         currentPage={currentPage}/>}
+            {<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery}/>}
         </div>
     );
 };

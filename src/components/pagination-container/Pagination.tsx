@@ -6,13 +6,34 @@ import {ISetState} from "../../types";
 interface IProps {
     setCurrentPage: ISetState<number>,
     currentPage: number,
-    changePage: (currentPage: number) => void,
-    prev: () => void;
-    next: () => void;
+    setQuery: any
 }
 
-const Pagination: FC<IProps> = ({setCurrentPage, changePage, currentPage, prev, next}) => {
+const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
     const pages: (string | number)[] = [];
+
+    const changePage = (numPage: number) => {
+        setQuery((page: { set: (arg0: string, arg1: string) => void; }) => {
+            page.set('page', `${numPage}`);
+
+            return page;
+        })
+    }
+
+    const prev = () => {
+        setQuery((page: { set: (arg0: string, arg1: string) => void; get: (arg0: string) => string | number; }) => {
+            page.set('page', `${+page.get('page') - 1}`);
+
+            return page;
+        })
+    }
+
+    const next = () => {
+        setQuery((page: { set: (arg0: string, arg1: string) => void; get: (arg0: string) => string | number; }) => {
+            page.set('page', `${+page.get('page') + 1}`);
+            return page;
+        })
+    }
 
     for (let i = 1; i <= 500; i++) {
         pages.push(i);

@@ -29,29 +29,6 @@ const GenreMovies = () => {
         });
     }
 
-    const changePage = (numbPage: number) => {
-        setQuery((page) => {
-            page.set('page', `${numbPage}`);
-
-            return page;
-        })
-    }
-
-    const prev = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') - 1}`);
-
-            return page;
-        })
-    }
-
-    const next = () => {
-        setQuery((page) => {
-            page.set('page', `${+page.get('page') + 1}`);
-            return page;
-        })
-    }
-
     return (
         <div className={css.GenreMovies}>
             <div className={css.GenreMovies_container}>
@@ -59,7 +36,7 @@ const GenreMovies = () => {
                     moviesByGenre.map(movie => <GenreMovie key={movie.id} movie={movie}/>)
                 }
             </div>
-            <Pagination setCurrentPage={setCurrentPage} changePage={changePage} prev={prev} next={next} currentPage={currentPage}/>
+            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery}/>
         </div>
     );
 };
