@@ -19,6 +19,7 @@ const SearchForm = () => {
         if (!query.get('query')) {
             moviesService.getAll(query.get('page')).then(({data}) => {
                 setMovies(data.results);
+                setTotalPages(data.total_pages);
                 setCurrentPage(data.page);
             })
         } else {
