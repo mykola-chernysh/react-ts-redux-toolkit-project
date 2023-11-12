@@ -11,6 +11,7 @@ import {Pagination} from "../../pagination-container";
 const SearchForm = () => {
     const {register, handleSubmit, reset} = useForm();
     const [movies, setMovies] = useState<IMovie[]>([]);
+    const [totalPages, setTotalPages] = useState<number>();
     const [currentPage, setCurrentPage] = useState(1)
     const [query, setQuery] = useSearchParams({page: '1'});
 
@@ -23,10 +24,11 @@ const SearchForm = () => {
         } else {
             moviesService.getSearchMovies(query.get('page'), query.get('query')).then(({data}) => {
                 setMovies(data.results);
+                setTotalPages(data.total_pages);
                 setCurrentPage(data.page);
             })
         }
-    }, [query.get('page'), query.get('query')]);
+    }, [query]);
 
     const searchMovies = (value: { search: string }) => {
         setQuery((prev) => {
@@ -47,7 +49,7 @@ const SearchForm = () => {
             <div className={css.SearchForm_container}>
                 {movies && movies.map((movie) => <SearchMovies key={movie.id} movie={movie}/>)}
             </div>
-            {<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery}/>}
+            {<Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery} totalPages={totalPages}/>}
         </div>
     );
 };

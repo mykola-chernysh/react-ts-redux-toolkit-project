@@ -5,12 +5,13 @@ import {ISetState} from "../../types";
 
 interface IProps {
     setCurrentPage: ISetState<number>,
+    totalPages: number,
     currentPage: number,
     setQuery: any
 }
 
-const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
-    const pages: (string | number)[] = [];
+const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery, totalPages} ) => {
+    const [currentPages, setCurrentPages] = useState<any[]>([]);
 
     const changePage = (numPage: number) => {
         setQuery((page: { set: (arg0: string, arg1: string) => void; }) => {
@@ -23,7 +24,6 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
     const prev = () => {
         setQuery((page: { set: (arg0: string, arg1: string) => void; get: (arg0: string) => string | number; }) => {
             page.set('page', `${+page.get('page') - 1}`);
-
             return page;
         })
     }
@@ -35,16 +35,20 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
         })
     }
 
-    for (let i = 1; i <= 500; i++) {
-        pages.push(i);
-    }
-
-    const [currentPages, setCurrentPages] = useState<any[]>([]);
-
     useEffect(() => {
+        const pages: (string | number)[] = [];
+
+        for (let i = 1; i <= totalPages; i++) {
+            pages.push(i);
+        }
+
         let arrPages = [...pages];
 
-        if (currentPage >= 1 && currentPage <= 3) {
+        if (pages.length < 6) {
+            arrPages = pages
+        }
+
+        else if (currentPage >= 1 && currentPage <= 3) {
             arrPages = [1, 2, 3, 4, '...', pages.length]
         }
 
@@ -65,7 +69,7 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
         }
 
         setCurrentPages(arrPages);
-    }, [currentPage]);
+    }, [currentPage, totalPages]);
 
     return (
         <div className={css.Pagination}>
@@ -97,7 +101,7 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery}) => {
 
             <button
                 id={'button'}
-                disabled={currentPage === 500}
+                disabled={currentPage === totalPages}
                 onClick={() => {
                 next();
                 setCurrentPage(prev => prev + 1);

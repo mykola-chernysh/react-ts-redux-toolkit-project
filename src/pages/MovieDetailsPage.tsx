@@ -12,7 +12,7 @@ const MovieDetailsPage = () => {
 
     useEffect(() => {
         moviesService.getById(id).then(({data}) => setMovie(data));
-    }, []);
+    }, [id]);
 
     return (
         <div className={css.MoviesDetailsPage}>
