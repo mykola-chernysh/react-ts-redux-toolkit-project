@@ -1,22 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
 
 import css from './MovieDetailsPage.module.css'
 import {MovieDetails} from "../components";
-import {moviesService} from "../services";
-import {IMovieDetails} from "../interfaces";
+import {useAppDispatch, useAppSelector} from "../hooks";
+import {movieActions} from "../redux";
 
 const MovieDetailsPage = () => {
     const {id} = useParams();
-    const [movie, setMovie  ] = useState<IMovieDetails>();
+    const {movie} = useAppSelector(state => state.movies);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        moviesService.getById(id).then(({data}) => setMovie(data));
-    }, [id]);
+        dispatch(movieActions.getById({id}));
+    }, [id, dispatch]);
 
     return (
         <div className={css.MoviesDetailsPage}>
-            {movie && <MovieDetails movie={movie}/>}
+            {
+                movie && <MovieDetails movie={movie}/>
+            }
         </div>
     );
 };

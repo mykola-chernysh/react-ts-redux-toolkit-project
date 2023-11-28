@@ -1,35 +1,33 @@
 import React, {FC, useEffect, useState} from 'react';
 
 import css from './Pagination.module.css';
-import {ISetState} from "../../types";
+import {SetURLSearchParams} from "react-router-dom";
 
 interface IProps {
-    setCurrentPage: ISetState<number>,
     totalPages: number,
     currentPage: number,
-    setQuery: any
+    setQuery: SetURLSearchParams
 }
 
-const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery, totalPages} ) => {
+const Pagination: FC<IProps> = ({currentPage, setQuery, totalPages} ) => {
     const [currentPages, setCurrentPages] = useState<any[]>([]);
 
     const changePage = (numPage: number) => {
-        setQuery((page: { set: (arg0: string, arg1: string) => void; }) => {
+        setQuery((page) => {
             page.set('page', `${numPage}`);
-
             return page;
         })
     }
 
     const prev = () => {
-        setQuery((page: { set: (arg0: string, arg1: string) => void; get: (arg0: string) => string | number; }) => {
+        setQuery((page) => {
             page.set('page', `${+page.get('page') - 1}`);
             return page;
         })
     }
 
     const next = () => {
-        setQuery((page: { set: (arg0: string, arg1: string) => void; get: (arg0: string) => string | number; }) => {
+        setQuery((page) => {
             page.set('page', `${+page.get('page') + 1}`);
             return page;
         })
@@ -78,7 +76,6 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery, totalPag
                 disabled={currentPage === 1}
                 onClick={() => {
                 prev();
-                setCurrentPage(prev => prev - 1);
             }} >Prev</button>
 
             {
@@ -88,11 +85,9 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery, totalPag
                         disabled={page === '...' || page === ' ...' || page === '... '}
                         key={page}
                         onClick={() => {
-                            setCurrentPage(page);
                             changePage(page);
                         }}
                         className={`${currentPage === page ? css.active : ''}`}
-
                     >
                         {page}
                     </button>
@@ -104,7 +99,6 @@ const Pagination: FC<IProps> = ({setCurrentPage, currentPage, setQuery, totalPag
                 disabled={currentPage === totalPages}
                 onClick={() => {
                 next();
-                setCurrentPage(prev => prev + 1);
             }}>Next</button>
         </div>
     );

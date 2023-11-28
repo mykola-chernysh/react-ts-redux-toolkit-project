@@ -1,25 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useSearchParams} from "react-router-dom";
 
 import css from './Movies.module.css';
-import {IMovie} from "../../../interfaces";
-import {moviesService} from "../../../services";
 import {Movie} from "../Movie";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {movieActions} from "../../../redux";
 import {Pagination} from "../../pagination-container";
 
 const Movies = () => {
-    const [movies, setMovies] = useState<IMovie[]>([]);
-    const [totalPages, setTotalPages] = useState<number>();
-    const [currentPage, setCurrentPage] = useState<number>(1);
     const [query, setQuery] = useSearchParams({page: '1'});
+    const {movies, page, total_pages} = useAppSelector(state => state.movies);
+    const dispatch = useAppDispatch();
+
+    const currentPage = query.get('page');
 
     useEffect(() => {
-        moviesService.getAll(query.get('page')).then(({data}) => {
-            setMovies(data.results);
-            setTotalPages(data.total_pages);
-            setCurrentPage(data.page);
-        })
-    }, [query]);
+        dispatch(movieActions.getAll({page: currentPage}));
+    }, [dispatch, currentPage]);
 
     return (
         <div className={css.Movies}>
@@ -28,7 +25,7 @@ const Movies = () => {
                     movies.map(movie => <Movie key={movie.id} movie={movie}/>)
                 }
             </div>
-            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery} totalPages={totalPages}/>
+            <Pagination currentPage={page} setQuery={setQuery} totalPages={total_pages}/>
         </div>
     );
 };

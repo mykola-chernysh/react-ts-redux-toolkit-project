@@ -2,13 +2,11 @@ import React from 'react';
 import {Outlet} from "react-router-dom";
 
 import {Header} from "../components";
-import {useTheme} from "../hooks";
 
 const MainLayout = () => {
-    const {theme} = useTheme();
 
     return (
-        <div className={theme}>
+        <div>
             <Header/>
             <Outlet/>
         </div>

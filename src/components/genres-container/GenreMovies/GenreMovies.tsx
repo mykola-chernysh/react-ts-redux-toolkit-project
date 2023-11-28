@@ -1,47 +1,42 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useLocation, useSearchParams} from "react-router-dom";
 
 import css from './GenreMovies.module.css';
-import {IMovie} from "../../../interfaces";
-import {genresService} from "../../../services";
 import {GenreMovie} from "../GenreMovie";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {movieActions} from "../../../redux";
 import {Pagination} from "../../pagination-container";
 
 const GenreMovies = () => {
     const {state: id} = useLocation();
-    const [moviesByGenre, setMoviesByGenre] = useState<IMovie[]>([]);
-    const [totalPages, setTotalPages] = useState<number>();
-    const [query, setQuery] = useSearchParams({page: '1', with_genres: ''});
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [query, setQuery] = useSearchParams({page: '', with_genres: ''});
+    const {movies, page, total_pages} = useAppSelector(state => state.movies);
+    const dispatch = useAppDispatch();
+
+    const currentPage = query.get('page');
+    const currentGenre = query.get('with_genres');
 
     useEffect(() => {
-        genresService.getMoviesByGenres((query.get('with_genres')), (query.get('page'))).then(({data}) => {
-            setMoviesByGenre(data.results);
-            setTotalPages(data.total_pages);
-            setCurrentPage(data.page);
+        dispatch(movieActions.getByGenre({page: currentPage, genre: currentGenre}));
 
-            const changeGenre = () => {
-                setQuery(prev => {
-                    prev.set('with_genres', `${id}`);
+    }, [dispatch, id, currentPage, currentGenre, setQuery]);
 
-                    return prev;
-                });
-            }
+    id && setQuery(prev => {
+        let page = +prev.get('page');
 
-            id && changeGenre()
-        });
-    }, [query, setQuery, id]);
+        page += 1;
 
-
+        return {page: `${page}`, with_genres: id};
+    });
 
     return (
         <div className={css.GenreMovies}>
             <div className={css.GenreMovies_container}>
                 {
-                    moviesByGenre.map(movie => <GenreMovie key={movie.id} movie={movie}/>)
+                    movies.map(movie => <GenreMovie key={movie.id} movie={movie}/>)
                 }
             </div>
-            <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} setQuery={setQuery} totalPages={totalPages}/>
+            <Pagination currentPage={page} setQuery={setQuery} totalPages={total_pages}/>
         </div>
     );
 };

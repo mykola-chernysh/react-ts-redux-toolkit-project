@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
 import {Rating} from "react-simple-star-rating";
 
+import default_image from '../../../images/default-card-image.png';
 import css from './MovieDetails.module.css';
 import {IMovieDetails} from "../../../interfaces";
 
 interface IProps {
-    movie: IMovieDetails,
+    movie: IMovieDetails
 }
 
 const MovieDetails: FC<IProps> = ({movie}) => {
@@ -27,10 +28,11 @@ const MovieDetails: FC<IProps> = ({movie}) => {
     const language = spoken_languages.map(value => value.iso_639_1).join(', ');
 
     return (
-        <div className={css.MovieDetails} >
+        <div className={css.MovieDetails}>
             <div className={css.MovieDetails_container} id={'movie_details'}>
                 <div className={css.MovieDetails_poster}>
-                    <img src={`https://image.tmdb.org/t/p/w500${poster_path}`} alt=""/>
+                    <img src={poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : default_image}
+                         alt="title"/>
                     <Rating initialValue={vote_average} readonly={true} size={25} iconsCount={10} allowFraction={true}/>
                 </div>
                 <div className={css.MovieDetails_info} id={'movieDetails_info'}>

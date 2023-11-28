@@ -4,16 +4,24 @@ import ReactSwitch from "react-switch";
 
 import css from './Header.module.css';
 import user_img from '../../images/header-images/enot.png';
-import {useTheme} from '../../hooks';
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {themeActions} from "../../redux";
 
 const Header = () => {
-    const {theme, setTheme} = useTheme();
+    const {theme} = useAppSelector(state => state.theme);
+    const dispatch = useAppDispatch();
+
+    localStorage.setItem('theme', `${theme}`);
+
     const changeTheme = () => {
-        setTheme((prev) => (prev === 'Light' ? 'Dark' : 'Light'));
-
+        if (!theme) {
+            document.body.classList.add('Dark');
+            dispatch(themeActions.changeTheme());
+        } else {
+            document.body.classList.remove('Dark');
+            dispatch(themeActions.changeTheme());
+        }
     }
-
-    localStorage.setItem('theme', theme);
 
     return (
         <div className={css.Header} id={'header'}>
@@ -26,8 +34,8 @@ const Header = () => {
                 </div>
                 <div className={css.Header_right}>
                     <div className={css.Switch}>
-                        <label>{theme === 'Light' ? 'Light mode' : 'Dark mode'}</label>
-                        <ReactSwitch checked={theme === 'Dark'} onChange={changeTheme} height={20} width={40} checkedIcon={false} uncheckedIcon={false}/>
+                        <label>{!theme ? 'Light mode' : 'Dark mode'}</label>
+                        <ReactSwitch checked={theme} onChange={changeTheme} height={20} width={40} checkedIcon={false} uncheckedIcon={false}/>
                     </div>
                     <div className={css.Header_user}>
                         <div>

@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 import css from './Genres.module.css';
-import {IGenre} from "../../../interfaces";
-import {genresService} from "../../../services";
 import {Genre} from "../Genre";
+import {useAppDispatch, useAppSelector} from "../../../hooks";
+import {genreActions} from "../../../redux";
 
 const Genres = () => {
-    const [genres, setGenres] = useState<IGenre[]>([]);
+    const {genres} = useAppSelector(state => state.genres);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        genresService.getGenres().then(({data}) => setGenres(data.genres))
-    }, []);
+        dispatch(genreActions.getAll());
+    }, [dispatch]);
 
     return (
         <div className={css.Genres} id={'genre'}>

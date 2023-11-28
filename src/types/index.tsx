@@ -1,2 +1,2 @@
-export * from './IResType';
-export * from './ISetState';
+export * from './axiosResponceType';
+export * from './reduxType';

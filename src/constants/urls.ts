@@ -9,7 +9,6 @@ const urls = {
         base: movies,
         byId: (id: string) => `/movie/${id}`,
         search: search
-
     },
     genres: {
         base: genres,

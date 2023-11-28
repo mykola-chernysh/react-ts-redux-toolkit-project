@@ -1,12 +1,12 @@
 import React from 'react';
 
 import css from './SearchPage.module.css';
-import {SearchForm} from "../components";
+import {SearchMovies} from "../components";
 
 const SearchPage = () => {
     return (
         <div className={css.SearchPage}>
-            <SearchForm/>
+            <SearchMovies/>
         </div>
     );
 };
