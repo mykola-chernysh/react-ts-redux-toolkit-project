@@ -6,7 +6,7 @@ const store = configureStore({
    reducer: {
       movies: movieReducer,
       genres: genreReducer,
-      theme: themeReducer
+      darkMode: themeReducer
    }
 });
 

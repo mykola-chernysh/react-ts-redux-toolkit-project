@@ -8,19 +8,14 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {themeActions} from "../../redux";
 
 const Header = () => {
-    const {theme} = useAppSelector(state => state.theme);
+    const {mode} = useAppSelector(state => state.darkMode);
     const dispatch = useAppDispatch();
 
-    localStorage.setItem('theme', `${theme}`);
+    mode && document.body.classList.add('Dark');
 
-    const changeTheme = () => {
-        if (!theme) {
-            document.body.classList.add('Dark');
-            dispatch(themeActions.changeTheme());
-        } else {
-            document.body.classList.remove('Dark');
-            dispatch(themeActions.changeTheme());
-        }
+    const changeMode = () => {
+        document.body.classList.toggle('Dark');
+        dispatch(themeActions.toggleDarkMode());
     }
 
     return (
@@ -34,8 +29,8 @@ const Header = () => {
                 </div>
                 <div className={css.Header_right}>
                     <div className={css.Switch}>
-                        <label>{!theme ? 'Light mode' : 'Dark mode'}</label>
-                        <ReactSwitch checked={theme} onChange={changeTheme} height={20} width={40} checkedIcon={false} uncheckedIcon={false}/>
+                        <label>{!mode ? 'Light mode' : 'Dark mode'}</label>
+                        <ReactSwitch checked={mode} onChange={changeMode} height={20} width={40} checkedIcon={false} uncheckedIcon={false}/>
                     </div>
                     <div className={css.Header_user}>
                         <div>
