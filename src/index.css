@@ -58,10 +58,48 @@ html, body {
     background-color: #1f2123;
 }
 
+.Dark #movieDetails_poster > span {
+    border: 5px solid #000000;
+}
+
+.Dark #movie_info > div {
+    border: 5px solid #000000;
+}
+
+.Dark #movieDetails_poster > img {
+    border: 5px solid #000000;
+}
+
 .Dark #movieDetails_info {
     border: 10px solid #1f2123;
 }
 
+.Dark #movieDetails_info > div {
+    border: 5px solid #000000;
+    padding: 15px;
+}
+
 .Dark #movieDetails_descr > div {
     background-color: #1f2123;
+}
+
+.Dark #movieDetails_descr > div > h3 {
+    border: 5px solid #000000;
+    border-bottom: 0;
+}
+
+.Dark #movieDetails_descr > div > p {
+    border: 5px solid #000000;
+}
+
+.Dark #image_media {
+    border: 5px solid #000000;
+}
+
+.Dark #image_popup > img {
+    border: 5px solid #1f2123;
+}
+
+.Dark #image_popup > span {
+    color: #d3d3d3;
 }

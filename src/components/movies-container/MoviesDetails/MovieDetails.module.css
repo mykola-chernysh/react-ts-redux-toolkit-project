@@ -26,14 +26,14 @@
 
 .MovieDetails_poster > img {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     height: auto;
 
     border: 5px solid #d8f0f2;
 }
 
 .MovieDetails_poster > span {
-    width: 300px;
+    width: 250px;
 
     text-align: center;
     border: 5px solid #d8f0f2;
@@ -43,7 +43,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 
     border: 10px solid #00abe4;
 }
@@ -55,7 +54,7 @@
     grid-template-columns: 120px 200px;
     align-items: center;
 
-    padding: 20px;
+    padding: 16px;
 
     color: #ffffff;
     font-size: 20px;
@@ -79,12 +78,10 @@
 }
 
 .MovieDetails_descr {
-    width: 710px;
-
+    width: 660px;
 }
 
 .MovieDetails_descr > div {
-    width: 710px;
     background-color: #00abe4;
     padding: 10px;
 }
@@ -97,21 +94,20 @@
     padding-top: 0;
 }
 
-
 .MovieDetails_descr > div > p {
-    padding: 20px;
+    padding: 10px;
 
     text-align: justify;
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 24px;
     color: #ffffff;
     border: 5px solid #d8f0f2;
 }
 
 .MovieDetails_descr > div > h3 {
-    width: 300px;
+    width: 250px;
 
-    font-size: 20px;
+    font-size: 18px;
 
     padding: 10px;
 

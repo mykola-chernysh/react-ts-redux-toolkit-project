@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
-import {IMovie, IMovieDetails, IResMovie} from "../../interfaces";
+import {IImage, IImages, IMovie, IMovieDetails, IResMovie} from "../../interfaces";
 import {genresService, moviesService} from "../../services";
 
 interface IState {
@@ -9,13 +9,15 @@ interface IState {
     movies: IMovie[],
     total_pages: number,
     movie: IMovieDetails,
+    images: IImage[]
 }
 
 const initialState: IState = {
     page: null,
     movies: [],
     total_pages: null,
-    movie: null
+    movie: null,
+    images: []
 };
 
 const getAll = createAsyncThunk<IResMovie, { page: string }>(
@@ -70,6 +72,19 @@ const getFound = createAsyncThunk<IResMovie, { page: string, word: string }>(
     }
 )
 
+const getImages = createAsyncThunk<IImages, { id: string }>(
+    'movieSlice/getImages',
+    async ({id}, {rejectWithValue}) => {
+        try {
+            const {data} = await moviesService.getImages(id);
+            return data;
+        } catch (e) {
+            const error = e as AxiosError;
+            return rejectWithValue(error.response?.data);
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -78,6 +93,9 @@ const movieSlice = createSlice({
         builder
             .addCase(getById.fulfilled, (state, action) => {
                 state.movie = action.payload;
+            })
+            .addCase(getImages.fulfilled, (state, action) => {
+                state.images = action.payload.backdrops
             })
             .addMatcher(isFulfilled(getAll, getByGenre, getFound), (state, action) => {
                 const {page, total_pages, results} = action.payload;
@@ -95,7 +113,8 @@ const movieActions = {
     getAll,
     getById,
     getByGenre,
-    getFound
+    getFound,
+    getImages
 };
 
 export {
