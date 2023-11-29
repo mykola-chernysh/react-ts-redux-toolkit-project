@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <div className={css.Header} id={'header'}>
             <div className={css.Header_container}>
-                <NavLink to={'/movies'} className={css.Header_logo}>MoviesDB</NavLink>
+                <NavLink to={'/movies'} className={css.Header_logo}>MovieDB</NavLink>
                 <div className={css.Header_menu}>
                     <NavLink to={'/movies'}>Movies</NavLink>
                     <NavLink to={'/genres'}>Genres</NavLink>
