@@ -1,0 +1,11 @@
+.trailer {
+    padding: 5px;
+    background-color: #4393D9;
+}
+
+.trailer_title {
+    font-size: 35px;
+    text-transform: uppercase;
+    color: #4393D9;
+    margin: 20px 0 20px 0;
+}

@@ -5,6 +5,7 @@ import default_image from '../../../images/default-card-image.png';
 import css from './MovieDetails.module.css';
 import {IMovieDetails} from "../../../interfaces";
 import {MovieImages} from "./movie-images";
+import {MovieVideo} from "./movie-video";
 
 interface IProps {
     movie: IMovieDetails
@@ -54,6 +55,7 @@ const MovieDetails: FC<IProps> = ({movie}) => {
                 </div>
             </div>
             <MovieImages id={id}/>
+            <MovieVideo id={id}/>
         </div>
     );
 };

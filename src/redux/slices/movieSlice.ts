@@ -1,26 +1,30 @@
-import {createAsyncThunk, createSlice, isFulfilled} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isPending} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 
-import {IImage, IImages, IMovie, IMovieDetails, IResMovie} from "../../interfaces";
+import {IImage, IImages, IMovie, IMovieDetails, IMovies, IVideo, IVideos} from "../../interfaces";
 import {genresService, moviesService} from "../../services";
 
 interface IState {
     page: number,
     movies: IMovie[],
-    total_pages: number,
+    totalPages: number,
     movie: IMovieDetails,
-    images: IImage[]
+    images: IImage[],
+    videos: IVideo[],
+    isLoading: boolean
 }
 
 const initialState: IState = {
     page: null,
     movies: [],
-    total_pages: null,
+    totalPages: null,
     movie: null,
-    images: []
+    images: [],
+    videos: [],
+    isLoading: null
 };
 
-const getAll = createAsyncThunk<IResMovie, { page: string }>(
+const getAll = createAsyncThunk<IMovies, { page: string }>(
     'movieSlice/getAll',
     async ({page}, {rejectWithValue}) => {
         try {
@@ -46,7 +50,7 @@ const getById = createAsyncThunk<IMovieDetails, { id: string }>(
     }
 )
 
-const getByGenre = createAsyncThunk<IResMovie, { page: string, genre: string }>(
+const getByGenre = createAsyncThunk<IMovies, { page: string, genre: string }>(
     'movieSlice/getByGenre',
     async ({page, genre}, {rejectWithValue}) => {
         try {
@@ -59,7 +63,7 @@ const getByGenre = createAsyncThunk<IResMovie, { page: string, genre: string }>(
     }
 )
 
-const getFound = createAsyncThunk<IResMovie, { page: string, word: string }>(
+const getFound = createAsyncThunk<IMovies, { page: string, word: string }>(
     'movieSlice/getFound',
     async ({page, word}, {rejectWithValue}) => {
         try {
@@ -85,6 +89,19 @@ const getImages = createAsyncThunk<IImages, { id: string }>(
     }
 )
 
+const getVideos = createAsyncThunk<IVideos, { id: string }>(
+    'moviesSlice/getVideos',
+    async ({id}, {rejectWithValue})=>{
+        try {
+            const {data} = await moviesService.getVideo(id)
+            return data
+        }catch (e) {
+            const err = e as AxiosError
+            return rejectWithValue(err.response?.data)
+        }
+    }
+)
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
@@ -93,16 +110,26 @@ const movieSlice = createSlice({
         builder
             .addCase(getById.fulfilled, (state, action) => {
                 state.movie = action.payload;
+                state.isLoading = false;
             })
             .addCase(getImages.fulfilled, (state, action) => {
-                state.images = action.payload.backdrops
+                state.images = action.payload.backdrops;
+                state.isLoading = false;
+            })
+            .addCase(getVideos.fulfilled, (state, action) => {
+                state.videos = action.payload.results;
+                state.isLoading = false;
             })
             .addMatcher(isFulfilled(getAll, getByGenre, getFound), (state, action) => {
                 const {page, total_pages, results} = action.payload;
                 state.movies = results;
                 state.page = page;
-                state.total_pages = total_pages;
+                state.totalPages = total_pages > 500 ? 500 : total_pages;
                 state.movie = null;
+                state.isLoading = false;
+            })
+            .addMatcher(isPending(getAll, getByGenre, getFound, getById, getImages, getVideos), state => {
+                state.isLoading = true;
             })
 })
 
@@ -114,7 +141,8 @@ const movieActions = {
     getById,
     getByGenre,
     getFound,
-    getImages
+    getImages,
+    getVideos
 };
 
 export {

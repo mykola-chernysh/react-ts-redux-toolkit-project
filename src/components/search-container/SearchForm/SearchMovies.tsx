@@ -10,7 +10,7 @@ import {Pagination} from "../../pagination-container";
 
 const SearchMovies = () => {
     const {register, handleSubmit, reset} = useForm();
-    const {movies, page, total_pages} = useAppSelector(state => state.movies);
+    const {movies, page, totalPages} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
     const [query, setQuery] = useSearchParams({page: '1'});
 
@@ -44,7 +44,7 @@ const SearchMovies = () => {
             <div className={css.SearchForm_container}>
                 {movies && movies.map((movie) => <SearchMovie key={movie.id} movie={movie}/>)}
             </div>
-            {<Pagination currentPage={page} setQuery={setQuery} totalPages={total_pages}/>}
+            {<Pagination currentPage={page} setQuery={setQuery} totalPages={totalPages}/>}
         </div>
     );
 };

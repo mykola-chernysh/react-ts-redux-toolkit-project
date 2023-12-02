@@ -7,15 +7,16 @@
     width: 100%;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    background-color: #00abe4;
+    background-color: #4393D9;
 }
 
 .Header_container {
     width: 1200px;
-    min-height: 50px;
+    min-height: 65px;
 
     padding: 5px 20px;
 
@@ -103,4 +104,15 @@
 
 .Switch > label {
     text-align: center;
+}
+
+.Header_linear_progress{
+    width: 100%;
+    height: 5px;
+    background: #d8f0f2;
+}
+.Header_linear_progress_loader {
+    width: 100%;
+    height: 5px;
+    color: black;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import ReactSwitch from "react-switch";
+import {LinearProgress} from "@mui/material";
 
 import css from './Header.module.css';
 import user_img from '../../images/header-images/enot.png';
@@ -8,6 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {themeActions} from "../../redux";
 
 const Header = () => {
+    const {isLoading} = useAppSelector(state => state.movies);
     const {mode} = useAppSelector(state => state.darkMode);
     const dispatch = useAppDispatch();
 
@@ -20,6 +22,9 @@ const Header = () => {
 
     return (
         <div className={css.Header} id={'header'}>
+            {
+                !isLoading ? <div className={css.Header_linear_progress} id={'header_linear'}></div> : <LinearProgress className={css.Header_linear_progress_loader}/>
+            }
             <div className={css.Header_container}>
                 <NavLink to={'/movies'} className={css.Header_logo}>MovieDB</NavLink>
                 <div className={css.Header_menu}>

@@ -9,7 +9,8 @@ const urls = {
         base: movies,
         byId: (id: string): string => `/movie/${id}`,
         search: search,
-        images: (id: string): string => `/movie/${id}/images`
+        images: (id: string): string => `/movie/${id}/images`,
+        video: (id: string): string => `/movie/${id}/videos`
     },
     genres: {
         base: genres,

@@ -21,7 +21,7 @@
 
     padding: 10px;
 
-    background-color: #00abe4;
+    background-color: #4393D9;
 }
 
 .MovieDetails_poster > img {
@@ -44,7 +44,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    border: 10px solid #00abe4;
+    border: 10px solid #4393D9;
 }
 
 .MovieDetails_info > div {
@@ -58,7 +58,7 @@
 
     color: #ffffff;
     font-size: 20px;
-    background-color: #00abe4;
+    background-color: #4393D9;
 
     border: 5px solid #d8f0f2;
 }
@@ -82,7 +82,7 @@
 }
 
 .MovieDetails_descr > div {
-    background-color: #00abe4;
+    background-color: #4393D9;
     padding: 10px;
 }
 

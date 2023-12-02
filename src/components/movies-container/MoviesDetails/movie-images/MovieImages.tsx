@@ -22,8 +22,9 @@ const MovieImages: FC<IProps> = ({id}) => {
         <div className={css.Images}>
             <div className={css.Images_container}>
                 {
-                    images.slice(0, 9).map(image => (
+                    images.slice(0, 5).map(image => (
                         <div
+                            key={image.file_path}
                             id={'image_media'}
                             className={css.Images_media}
                             onClick={() => setImageMovie(`https://image.tmdb.org/t/p/original${image.file_path}`)}

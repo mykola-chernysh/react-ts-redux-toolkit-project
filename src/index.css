@@ -103,3 +103,15 @@ html, body {
 .Dark #image_popup > span {
     color: #d3d3d3;
 }
+
+.Dark #header_linear {
+    background-color: #131415;
+}
+
+.Dark #trailer_title {
+    color: #ffffff;
+}
+
+.Dark #trailer {
+    background-color: #000000;
+}

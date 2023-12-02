@@ -10,7 +10,7 @@ import {Pagination} from "../../pagination-container";
 const GenreMovies = () => {
     const {state: id} = useLocation();
     const [query, setQuery] = useSearchParams({page: '', with_genres: ''});
-    const {movies, page, total_pages} = useAppSelector(state => state.movies);
+    const {movies, page, totalPages} = useAppSelector(state => state.movies);
     const dispatch = useAppDispatch();
 
     const currentPage = query.get('page');
@@ -36,7 +36,7 @@ const GenreMovies = () => {
                     movies.map(movie => <GenreMovie key={movie.id} movie={movie}/>)
                 }
             </div>
-            <Pagination currentPage={page} setQuery={setQuery} totalPages={total_pages}/>
+            <Pagination currentPage={page} setQuery={setQuery} totalPages={totalPages}/>
         </div>
     );
 };
